@@ -73,10 +73,17 @@
             <button id="resetBtn">重置</button>
         </div>
     </div>
+    <py-config>
+        packages = ["numpy"]
+    </py-config>
     <script type="py">
+        
+import asyncio
+import micropip
+await micropip.install("numpy")
+
 import numpy as np
 from pyscript import window, document
-import asyncio
 
 m = 1.0
 hbar = 1.0
@@ -103,9 +110,13 @@ def harmonic_potential(x, omega):
 
 def hamiltonian(omega):
     V = harmonic_potential(x, omega)
-    T = -hbar ** 2 / (2 * m) * np.eye(N, k=1) * (-1/dx**2) + \
-        2 * hbar ** 2 / (2 * m) * np.eye(N) * (1/dx**2) + \
-        -hbar ** 2 / (2 * m) * np.eye(N, k=-1) * (-1/dx**2)
+    T = np.zeros((N, N), dtype=complex)
+    for i in range(N):
+        T[i, i] = hbar ** 2 / (m * dx ** 2)
+        if i > 0:
+            T[i, i-1] = -hbar ** 2 / (2 * m * dx ** 2)
+        if i < N - 1:
+            T[i, i+1] = -hbar ** 2 / (2 * m * dx ** 2)
     H = T + np.diag(V)
     return H
 
@@ -197,7 +208,7 @@ async def update():
             draw()
         await asyncio.sleep(30/1000)
 
-def setup():
+async def setup():
     document.getElementById('loading').style.display = 'none'
     document.getElementById('controls').style.display = 'block'
     init_wavefunction()
