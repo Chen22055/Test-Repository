@@ -1,3 +1,23 @@
+# Water Molecule Simulation Implementation Plan
+
+> **For Claude:** Use superpowers:executing-plans to implement this plan task-by-task.
+
+**Goal:** Single HTML file with classical MD water molecule simulation
+
+**Architecture:** Canvas-based 2D simulation with ball-and-stick molecules, soft collision physics, rotational dynamics
+
+**Tech Stack:** Pure HTML5 Canvas + JavaScript
+
+---
+
+### Task 1: Create water molecule simulation HTML file
+
+**Files:**
+- Create: `water-simulation.html`
+
+**Step 1: Write the simulation code**
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +65,7 @@
     </style>
 </head>
 <body>
-    <h1>Water Molecule Simulation</h1>
+    <h1>💧 Water Molecule Simulation</h1>
     <canvas id="canvas" width="800" height="500"></canvas>
     <div id="controls">
         <div class="control-group">
@@ -239,3 +259,48 @@
     </script>
 </body>
 </html>
+```
+
+**Step 2: Verify file exists**
+
+Run: `ls water-simulation.html`
+
+**Step 3: Test in browser** (conceptually - verify no syntax errors)
+
+---
+
+### Task 2: Deploy to GitHub Pages
+
+**Files:**
+- Modify: `index.html` - Replace with water simulation (or rename water-simulation.html)
+
+**Step 1: Check git status**
+
+Run: `git status`
+
+**Step 2: Stage and commit**
+
+```bash
+git add water-simulation.html
+git commit -m "feat: add water molecule simulation"
+```
+
+**Step 3: Push to remote**
+
+```bash
+git push origin main
+```
+
+**Step 4: Enable GitHub Pages**
+
+In GitHub: Settings → Pages → Source: main branch → Save
+
+---
+
+**Plan complete and saved to `docs/plans/2026-02-27-water-molecule-simulation-plan.md`. Two execution options:**
+
+**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
+
+**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
+
+**Which approach?**
